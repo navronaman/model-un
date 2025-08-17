@@ -1,12 +1,52 @@
-# React + Vite
+# Model UN Session Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based web application for Model UN committee chairs to manage and track committee sessions in real-time.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Session Setup**: Configure delegates and their details
+- **Motion Management**: Propose and vote on different types of motions
+- **Timer System**: Track speaking times and caucus durations
+- **Delegate Tracking**: Maintain voting and speaking history for each delegate
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Framework**: React 19 with Vite
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **State Management**: React Hooks
+
+## Getting Started
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Open your browser and navigate to the local development URL.
+
+## Project Structure
+
+```
+src/
+├── components/          # React components
+│   ├── SetupScreen.tsx  # Session setup interface
+│   └── index.ts        # Component exports
+├── types/              # TypeScript type definitions
+│   └── index.ts        # Application interfaces
+├── App.tsx             # Main application component
+├── main.tsx            # Application entry point
+└── index.css           # Global styles with Tailwind
+```
+
+## Development
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run lint` - Run ESLint
+- `npm run preview` - Preview production build
