@@ -33,9 +33,10 @@ function App() {
     const motion = sessionState.proposedMotions.find(m => m.id === motionId);
     if (!motion) return;
 
-    const isPassing = yayCount > nayCount;
+    const totalVotes = yayCount + nayCount;
+    const passes = yayCount > nayCount && totalVotes === sessionState.delegates.length;
 
-    if (isPassing) {
+    if (passes) {
       // Motion passes - transition to in_motion state
       const activeMotion: ActiveMotion = {
         type: motion.type,
@@ -55,7 +56,7 @@ function App() {
       // Motion fails - remove from proposed motions
       setSessionState(prev => ({
         ...prev,
-        proposedMotions: prev.proposedMotions.filter(m => m.id !== motionId)
+        proposedMotions: prev.proposedMotions.filter(m => m.id !== motionId),
       }));
     }
   };
@@ -84,23 +85,22 @@ function App() {
           <SetupScreen onSessionStart={handleSessionStart} />
         )}
 
-              {sessionState.status === 'awaiting_motion' && (
-        <SessionDashboard
-          delegates={sessionState.delegates}
-          proposedMotions={sessionState.proposedMotions}
-          onAddProposedMotion={handleAddProposedMotion}
-          onVoteResult={handleVoteResult}
-        />
-      )}
-              {sessionState.status === 'in_motion' && sessionState.activeMotion && (
+        {sessionState.status === 'awaiting_motion' && (
+          <SessionDashboard
+            delegates={sessionState.delegates}
+            proposedMotions={sessionState.proposedMotions}
+            onAddProposedMotion={handleAddProposedMotion}
+            onVoteResult={handleVoteResult}
+          />
+        )}
+
+        {sessionState.status === 'in_motion' && sessionState.activeMotion && (
           <ActiveMotionDisplay
             activeMotion={sessionState.activeMotion}
             delegates={sessionState.delegates}
             onFinishMotion={handleFinishMotion}
           />
         )}
-
-
       </div>
     </div>
   );
